@@ -1,4 +1,4 @@
-import AppError from "../utils/AppError.js";
+import { AppError } from "../utils/AppError.js";
 
 const validate = (schema) => {
   return (req, res, next) => {
@@ -20,5 +20,6 @@ const validate = (schema) => {
     }
   };
 };
+
 
 export default validate;
