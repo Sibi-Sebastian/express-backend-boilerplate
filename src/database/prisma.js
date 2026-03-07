@@ -1,6 +1,7 @@
 // src/database/prisma.js
 
 import { PrismaClient } from "@prisma/client";
+import { config } from "../config/env";
 
 const globalForPrisma = globalThis;
 
@@ -8,12 +9,12 @@ export const prisma =
   globalForPrisma.prisma ||
   new PrismaClient({
     log:
-      process.env.NODE_ENV === "development"
+      config.env === "development"
         ? ["query", "info", "warn", "error"]
         : ["error"],
   });
 
-if (process.env.NODE_ENV !== "production") {
+if (config.env !== "production") {
   globalForPrisma.prisma = prisma;
 }
 

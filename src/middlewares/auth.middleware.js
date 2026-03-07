@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import AppError from "../utils/AppError.js";
+import { config } from "../config/env.js";
 
 const authMiddleware = (req, res, next) => {
   try {
@@ -17,7 +18,7 @@ const authMiddleware = (req, res, next) => {
 
     const token = parts[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, config.secret);
 
     req.user = decoded;
 
