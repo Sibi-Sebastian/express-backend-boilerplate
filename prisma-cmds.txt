@@ -1,0 +1,39 @@
+npm install prisma --save-dev
+npm install @prisma/client
+
+npx prisma init
+
+DATABASE_URL="mysql://username:password@localhost:3306/mydatabase"
+DATABASE_URL="postgresql://username:password@localhost:5432/mydatabase"
+
+
+prisma/schema.prisma
+
+
+model User {
+  id        String   @id @default(uuid())
+  name      String?
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+npx prisma migrate dev --name init
+npx prisma migrate dev --name add_user_name
+
+prisma/migrations/
+   202603071245_init/
+   202603071310_add_user_name/
+
+npx prisma generate
+npx prisma migrate deploy
+
+npx prisma studio
+
+
+npx prisma migrate reset
+
+
+
